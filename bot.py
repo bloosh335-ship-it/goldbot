@@ -4,17 +4,21 @@ from tvDatafeed import TvDatafeed, Interval
 from datetime import datetime
 import ta, csv, os
 
-TOKEN = os.getenv("8651321542:AAH404ftck09_GUPw6HzZB5ljZmRIorm6F0")
-CHAT_ID = os.getenv("7994882819")
+TOKEN = "8651321542:AAGzndLVsrFimOmVoAYEMshXlOMgBPgrlxM"
+CHAT_ID = "7994882819"
 
 tv = TvDatafeed()
 last_alert = None
 HISTORY_FILE = "signals_history.csv"
+
+
 def get_data(interval, bars=300):
     data = tv.get_hist("XAUUSD", "OANDA", interval=interval, n_bars=bars)
     if data is None or data.empty:
         raise Exception("ما وصلت بيانات TradingView")
     return data
+
+
 def candle_signal(data):
     o1, c1 = data["open"].iloc[-2], data["close"].iloc[-2]
     o2, c2 = data["open"].iloc[-1], data["close"].iloc[-1]
