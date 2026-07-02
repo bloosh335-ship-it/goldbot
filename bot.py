@@ -4,8 +4,8 @@ from tvDatafeed import TvDatafeed, Interval
 from datetime import datetime
 import ta, csv, os
 
-TOKEN = "8651321542:AAGzndLVsrFimOmVoAYEMshXlOMgBPgrlxM"
-CHAT_ID = "7994882819"
+TOKEN = os.getenv("8651321542:AAGzndLVsrFimOmVoAYEMshXlOMgBPgrlxM")
+CHAT_ID = os.getenv("7994882819")
 
 tv = TvDatafeed()
 last_alert = None
