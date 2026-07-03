@@ -4,8 +4,8 @@ from tvDatafeed import TvDatafeed, Interval
 from datetime import datetime
 import ta, csv, os
 
-TOKEN = os.getenv("8651321542:AAGzndLVsrFimOmVoAYEMshXlOMgBPgrlxM")
-CHAT_ID = os.getenv("7994882819")
+TOKEN = "8651321542:AAGzndLVsrFimOmVoAYEMshXlOMgBPgrlxM"
+CHAT_ID = "7994882819"
 
 tv = TvDatafeed()
 last_alert = None
@@ -23,18 +23,20 @@ def candle_signal(data):
     o1, c1 = data["open"].iloc[-2], data["close"].iloc[-2]
     o2, c2 = data["open"].iloc[-1], data["close"].iloc[-1]
     h, l = data["high"].iloc[-1], data["low"].iloc[-1]
+
     body = abs(c2 - o2)
     rng = h - l
 
-    if c1 < o1 and c2 > o2 and c2 > o1:
-        return "Bullish Engulfing 🟢", "buy"
-    if c1 > o1 and c2 < o2 and c2 < o1:
-        return "Bearish Engulfing 🔴", "sell"
     if rng > 0 and body < rng * 0.2:
         return "Doji ⚪", "neutral"
+
+    if c2 > o2:
+        return "Bullish Candle 🟢", "buy"
+
+    if c2 < o2:
+        return "Bearish Candle 🔴", "sell"
+
     return "لا يوجد نموذج قوي", "neutral"
-
-
 def analyze_tf(interval):
     data = get_data(interval)
     close, high, low = data["close"], data["high"], data["low"]
