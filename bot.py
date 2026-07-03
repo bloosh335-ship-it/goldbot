@@ -8,8 +8,8 @@ from tvDatafeed import TvDatafeed, Interval
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 
-TOKEN = os.getenv("TOKEN")
-CHAT_ID = os.getenv("CHAT_ID")
+TOKEN = os.getenv("T8651321542:AAGzndLVsrFimOmVoAYEMshXlOMgBPgrlxMOKEN")
+CHAT_ID = os.getenv("7994882819")
 
 tv = TvDatafeed()
 HISTORY_FILE = "signals_history.csv"
